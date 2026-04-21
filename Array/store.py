@@ -11,11 +11,11 @@ stock = {
 }
 
 while True:
-    question = str(input("Product you want to know price? "))
+    question = str(input("Product you want to know price? ").lower().strip())
     for i in stock:
         if question == i:
             print(stock[i])
-    end = str(input("Это всё что вы хотели узнать? "))
+    end = str(input("Это всё что вы хотели узнать? ").lower().strip())
     if end != "да":
         continue
     break
