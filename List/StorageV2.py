@@ -19,10 +19,10 @@ e = 0                 # Переменная отвечающая за спам
 comands = [
            "инфо",
            "добавить",
-           "выход"
+           "выход",
+           "удалить"
                       ] # Cписок команд
 
-print(f"{tovari}")
 
 def comand(t):      # Функция ввода неверной команды
     g = 0
@@ -35,9 +35,9 @@ def comand(t):      # Функция ввода неверной команды
     return 0
 
 
-def list(n):
-    for i in n:
-         print(f"Товар {i} за: {n[i]}")
+def spisok(n):
+    for i, o in n.items():
+         print(f"Товар {i} за: {o}")
     return 0
 
 
@@ -51,15 +51,15 @@ def add(n):
         print("Ошибка!")
     return 0
 
+def delete(n):
+    i = input("Что удалить? ")
+    if i in n:
+        del n[i]
+    else:
+        print("Неправильно")
 
-
-
-while True:
-
-    n = 0
- 
+while True: 
     protocol = str(input(("Команда? ")).lower().strip())
-
 
 
     if protocol == "":
@@ -69,28 +69,25 @@ while True:
         continue
 
 
-    for q in comands:
-
-        if protocol == q:
+    if protocol not in comands:
+        e += 1
+        if e >= 3:
             break
+        comand(comands)
+        continue
 
-        else:
-            n += 1
 
-        if n == 3:
-            e += 1
-            if e == 3:
-                break
-            comand(comands)
-            break
+    e = 0
+
 
     if protocol == "добавить":
         add(tovari)
-        e = 0
 
     if protocol == "инфо":
-        list(tovari)
-        e = 0
+        spisok(tovari)
+
+    if protocol == "удалить":
+        delete(tovari)
 
     if protocol == "выход":
         break
