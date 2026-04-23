@@ -1,28 +1,6 @@
-"""
+from database import sdata, ldata
 
-    Сделай так, чтобы программа работала в бесконечном цикле while True.
-
-    Реализуй три команды:
-
-        "инфо" — выводит весь словарь товаров и цен.
-
-        "добавить" — просит имя товара и цену. Обязательно проверь цену через .isdigit()!
-
-        "выход" — завершает программу.
-
-"""
-import json
-
-try:
-    with open("List/StorageV2/data.json", "r", encoding="utf-8") as f:
-        tovari = json.load(f)
-except (FileNotFoundError, json.JSONDecodeError):
-    tovari = {}
-
-with open("List/StorageV2/data.json", "w", encoding="utf-8") as g:
-    json.dump(tovari, g, indent=4, ensure_ascii=False)
-
-
+data = ldata()
 
 
 e = 0                 # Переменная отвечающая за спам
@@ -30,8 +8,8 @@ e = 0                 # Переменная отвечающая за спам
 comands = [
            "инфо",
            "добавить",
+           "удалить",
            "выход",
-           "удалить"
                         ] # Cписок команд
 
 
@@ -53,7 +31,7 @@ def getprice():
         a = input("Введите цену товара: ").strip()
         if a.isdigit():
             return int(a)
-        elif a == "назад":
+        elif a == "назад" or a == "выход":
             return None
         print("Ошибка!")
 
@@ -67,18 +45,26 @@ def add(n):
                 continue
             n[a] = int(b)
             print(f"Товар {a} за {b} добавлен!")
-            with open("List/StorageV2/data.json", "w", encoding="utf-8") as g:
-                json.dump(tovari, g, indent=4, ensure_ascii=False)
-            return 0
+            sdata(data)
+            return None
+        elif a == "выход" or a == "назад":
+            return None
         print("Ошибка! Попробуй ещё раз")
 
 
 def delete(n):
-    i = input("Что удалить? ")
-    if i in n:
-        del n[i]
-    else:
-        print("Неправильно")
+    while True:
+        for u in n:
+            print(f"{u}")
+        i = input("Что удалить? ").lower().strip()
+        if i in n:
+            del n[i]
+            sdata(data)
+            return None
+        elif i == "назад" or i == "выход":
+            return None
+        else:
+            print("Неправильно")
 
 while True:
 
@@ -106,15 +92,14 @@ while True:
     e = 0
 
     if protocol == "добавить":
-        add(tovari)
+        add(data)
 
     if protocol == "инфо":
-        spisok(tovari)
+        spisok(data)
 
     if protocol == "удалить":
-        delete(tovari)
+        delete(data)
 
     if protocol == "выход":
-        with open("List/StorageV2/data.json", "w", encoding="utf-8") as g:
-            json.dump(tovari, g, indent=4, ensure_ascii=False)
+        sdata(data)
         break
