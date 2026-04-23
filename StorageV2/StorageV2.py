@@ -1,7 +1,8 @@
 from database import sdata, ldata
 
-data = ldata()
+# Блок инициализации чего либо
 
+data = ldata()
 
 e = 0                 # Переменная отвечающая за спам
 
@@ -12,6 +13,7 @@ comands = [
            "выход",
                         ] # Cписок команд
 
+# Блок с функциями
 
 def comand(t):      # Функция ввода неверной команды
     g = 0
@@ -20,6 +22,7 @@ def comand(t):      # Функция ввода неверной команды
             print("Вот список доступных команд")
             g += 1
         print(f"{i}")
+
 
 def spisok(n):
     for i, o in n.items():
@@ -65,6 +68,8 @@ def delete(n):
             return None
         else:
             print("Неправильно")
+
+# Основа
 
 while True:
 
