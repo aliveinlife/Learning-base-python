@@ -49,7 +49,7 @@ def add(n):                        # Функция добавление нов�
                 continue
             n[a] = int(b)
             print(f"\nТовар {a} за {b} добавлен!")
-            sdata(data)
+            sdata(n)
             return None
         elif a == "выход" or a == "назад":
             return None
@@ -57,15 +57,15 @@ def add(n):                        # Функция добавление нов�
 
 
 def delete(n):                    # Функция удаление
+    print("")
+    print("Cписок:")
+    spisok(n)
     while True:
         print("")
-        print("Cписок:")
-        for u in n:
-            print(f"{u}")
         i = input("Что удалить? ").lower().strip()
         if i in n:
             del n[i]
-            sdata(data)
+            sdata(n)
             return None
         elif i == "назад" or i == "выход":
             return None
