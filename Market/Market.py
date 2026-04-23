@@ -19,35 +19,36 @@ def comand(t):      # Функция ввода неверной команды
     g = 0
     for i in t:
         if g == 0:
-            print("Вот список доступных команд")
+            print("Вот список доступных команд:\n")
             g += 1
         print(f"{i}")
 
 
-def spisok(n):
+def spisok(n):                      # Функция показывающая список товаров
+    print("")
     for i, o in n.items():
-         print(f"Товар {i} за: {o}")
+         print(f"{i} за: {o}")
+    print("")
 
-
-def getprice():
+def getprice():                     # Функция присваевание цены к товару
     while True:
-        a = input("Введите цену товара: ").strip()
+        a = input("Введите цену: ").strip()
         if a.isdigit():
             return int(a)
         elif a == "назад" or a == "выход":
             return None
-        print("Ошибка!")
+        print("\nОшибка!")
+        
 
-
-def add(n):
+def add(n):                        # Функция добавление нового товара
     while True:
-        a = input("Введите название товара: ").lower().strip()
+        a = input("\nВведите название: ").lower().strip()
         if a != "":
             b = getprice()
             if b == None:
                 continue
             n[a] = int(b)
-            print(f"Товар {a} за {b} добавлен!")
+            print(f"\nТовар {a} за {b} добавлен!")
             sdata(data)
             return None
         elif a == "выход" or a == "назад":
@@ -55,8 +56,10 @@ def add(n):
         print("Ошибка! Попробуй ещё раз")
 
 
-def delete(n):
+def delete(n):                    # Функция удаление
     while True:
+        print("")
+        print("Cписок:")
         for u in n:
             print(f"{u}")
         i = input("Что удалить? ").lower().strip()
@@ -67,15 +70,15 @@ def delete(n):
         elif i == "назад" or i == "выход":
             return None
         else:
-            print("Неправильно")
+            print("Ошибка!")
 
 # Основа
 
 while True:
 
 
-    comand(comands)
-    protocol = str(input(("Команда? ")).lower().strip())
+    comand(comands)                                        # Вывод списка команд
+    protocol = str(input(("\nКоманда? ")).lower().strip())   # Спрашиваем команду
 
 
     if protocol == "":
