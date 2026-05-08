@@ -102,13 +102,10 @@ while True:
 
     if protocol == "добавить":
         add(data)
-
-    if protocol == "инфо":
+    elif protocol == "инфо":
         spisok(data)
-
-    if protocol == "удалить":
+    elif protocol == "удалить":
         delete(data)
-
-    if protocol == "выход":
+    elif protocol == "выход":
         sdata(data)
         break
