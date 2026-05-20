@@ -15,6 +15,7 @@ comands = [
 
                                                      # Блок с функциями
 
+
 def comand(t):                                       # Функция ввода неверной команды
     g = 0
     for i in t:
@@ -41,6 +42,7 @@ def getprice():                                      # Функция присв
             return None
         print("\nОшибка!")
 
+
 def add(n):                                               # Функция добавление нового товара
     while True:
         a = input("\nВведите название: ").lower().strip()
@@ -48,7 +50,6 @@ def add(n):                                               # Функция до�
             b = getprice()
             if b == None:
                 continue
-            n[a] = int(b)
             print(f"\nТовар {a} за {b} добавлен!")
             sdata(n)
             return None
@@ -77,8 +78,8 @@ def delete(n):                                              # Функция у�
 
 while True:
 
-
-    comand(comands)                                          # Вывод списка команд
+    if e != 1:
+        comand(comands)                                          # Вывод списка команд
     protocol = str(input(("\nКоманда? ")).lower().strip())   # Спрашиваем команду
 
 
@@ -94,7 +95,6 @@ while True:
         if e >= 3:
             break
         print("Ошибка!")
-        comand(comands)
         continue
 
 
